@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录注册页面</title>
+</head>
+<body>
+    <div id="login-form" style="display: block;justify-items: center;"><table align="center">
+        <tr><td><h2>登录</h2></td></tr>
+        <form action="#" method="post">
+            <tr><td >用户名</td>
+                <td><input type="text" name="login_username" ></td>
+            </tr>
+            <tr><td >密码</td>
+                <td><input type="password" name="login_password"></td>
+            </tr>
+            <tr>
+                <td > <input type="submit" value="登录"></td>
+            </tr>
+        </form>
+        <tr><td><p>没有账号？<a href="#" onclick="toggleForm()">注册</a></p></td></tr></table>
+    </div>
+    <div id="register-form" style="display: none;justify-items: center;"><table align="center">
+        <tr><td><h2>注册</h2></td></tr>
+        <form action="#" method="post">
+            <tr><td>用户名</td>
+            <td><input type="text" name="register_username"></td></tr>
+            <tr><td>密码</td>
+            <td><input type="password" name="register_password"></td></tr>
+            <tr><td>确认密码</td>
+            <td><input type="password" name="confirm_password">
+            <tr><td>邮箱</td>
+            <td><input type="email" name="register_email" ></td></tr>
+            <tr><td>注册</td>
+            <td><input type="submit" value="注册"></td></tr>
+        </form>
+        <tr><td><p>已有账号？<a href="#" onclick="toggleForm()">登录</a></p></td></tr></table>
+    </div>
+
+    <script>
+        function toggleForm() {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            if (loginForm.style.display === 'block') {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            } else {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            }
+        }
+    </script> 
+</body>
+</html>
