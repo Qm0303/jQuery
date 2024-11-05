@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录注册页面</title>
+</head>
+
+<body>
+    <div id="login-form" style="display: block;justify-items: center;"><table align="center">
+            <tr>
+                <td><h2>登录</h2></td>
+            </tr>
+            <form action="#" method="post">
+                <tr>
+                    <td>用户名</td>
+                    <td><input type="text" name="login_username"></td>
+                </tr>
+                <tr>
+                    <td>密码</td>
+                    <td><input type="password" name="login_password"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="登录" onclick="checkUserExists()"></td>
+                </tr>
+            </form>
+            <tr>
+                <td><p>没有账号？<a href="#"onclick="toggleForm(event)">注册</a></p ></td>
+            </tr>
+        </table>
+    </div>
+    <div id="register-form" style="display: none;justify-items: center;"><table align="center">
+            <tr>
+                <td><h2>注册</h2></td>
+            </tr>
+            <form action="#" method="post">
+                <tr>
+                    <td>用户名</td>
+                    <td><input type="text" name="register_username"></td>
+                </tr>
+                <tr>
+                    <td>密码</td>
+                    <td><input type="password" name="register_password"></td>
+                </tr>
+                <tr>
+                    <td>确认密码</td>
+                    <td><input type="password" name="confirm_password"></td>
+                </tr>
+                <tr>
+                    <td>邮箱</td>
+                    <td><input type="email" name="register_email"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="注册" onclick="registerUser()"></td>
+                </tr>
+            </form>
+            <tr>
+                <td><p>已有账号？<a href="#"onclick="toggleForm(event)">登录</a></p ></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        // 模拟已注册用户数据存储，实际应用中应从数据库获取
+        const registeredUsers = [];
+
+        function toggleForm() {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            if (loginForm.style.display === 'block') {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            } else {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            }
+        }
+
+        function checkUserExists() {
+            const username = document.getElementsByName('login_username')[0].value;
+            const password = document.getElementsByName('login_password')[0].value;
+
+            // 检查用户是否存在于模拟数据中
+            const userExists = registeredUsers.some(user => user.username === username && user.password === password);
+
+            if (!userExists) {
+                alert('用户不存在，请先注册！');
+                return;
+            }
+
+            // 这里可添加登录成功后的后续逻辑，比如跳转到其他页面等，暂省略
+        }
+
+        function registerUser() {
+            const username = document.getElementsByName('register_username')[0].value;
+            const password = document.getElementsByName('register_password')[0].value;
+            const confirmPassword = document.getElementsByName('confirm_password')[0].value;
+            const email = document.getElementsByName('register_email')[0].value;
+
+            if (password!== confirmPassword) {
+                alert('两次输入的密码不一致，请重新输入！');
+                return;
+            }
+
+            // 将新注册用户信息添加到模拟数据中
+            registeredUsers.push({
+                username: username,
+                password: password,
+                email: email
+            });
+
+            alert('注册成功！');
+            toggleForm();
+        }
+    </script>
+</body>
+
+</html>
