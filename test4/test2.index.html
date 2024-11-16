@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Management System - Login & Register</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+  .form-container {
+      width: 250px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      margin: 80px auto;
+      padding: 80px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+     
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: #dad5c7;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      text-align: center;
+    }
+
+  .error-message {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="login-form-container" class="form-container">
+    <h2>登录</h2>
+    <input type="text" id="login-username" placeholder="用户名">
+    <input type="password" id="login-password" placeholder="密码">
+    <button onclick="login()">登录</button>
+    <p class="error-message" id="login-error"></p>
+
+    <button onclick="showRegisterForm()" id="register-button">注册</button>
+  </div>
+
+  <div id="register-form-container" class="form-container" style="display: none;">
+    <h2>注册</h2>
+    <input type="text" id="register-username" placeholder="用户名">
+    <input type="password" id="register-password" placeholder="密码">
+    <button onclick="register()">注册</button>
+    <p class="error-message" id="register-error"></p>
+  </div>
+
+  <script>
+    const users = [
+      { username: "user1", password: "pass1" },
+      { username: "user2", password: "pass2" }
+    ];
+
+    function login() {
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      const user = users.find(user => user.username === username && user.password === password);
+      if (user) {
+        window.location.href = "http://127.0.0.1:5500/test4.index.html";
+      } else {
+        document.getElementById('login-error').innerHTML = "用户名不存在！！！";
+      }
+    }
+
+    function register() {
+      const username = document.getElementById('register-username').value;
+      const password = document.getElementById('register-password').value;
+      const existingUser = users.find(user => user.username === username);
+      if (existingUser) {
+        document.getElementById('register-error').innerHTML = "用户已经存在！！！";
+      } else {
+        users.push({ username, password });
+        document.getElementById('register-error').innerHTML = "注册成功，现在可以登录！！！";
+        document.getElementById('register-form-container').style.display = 'none';
+        document.getElementById('login-form-container').style.display = 'block';
+      }
+    }
+
+    function showRegisterForm() {
+      document.getElementById('register-form-container').style.display = 'block';
+      document.getElementById('login-form-container').style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>
